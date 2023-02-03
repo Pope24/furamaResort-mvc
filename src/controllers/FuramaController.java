@@ -3,6 +3,7 @@ package controllers;
 import models.Employee;
 import services.CustomerServiceImpl;
 import services.EmployeeServiceImpl;
+import services.FacilityServiceImpl;
 
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public class FuramaController {
     Scanner sc = new Scanner(System.in);
     EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     CustomerServiceImpl customerService = new CustomerServiceImpl();
+    FacilityServiceImpl facilityService = new FacilityServiceImpl();
 
     public void subMenu(int chooseUser) {
         switch (chooseUser) {
@@ -52,7 +54,7 @@ public class FuramaController {
                 } while (chooseUserFromCase1 > 0 && chooseUserFromCase1 < 5);
                 break;
             case 2:
-                int chooseUserFromCase2 ;
+                int chooseUserFromCase2;
                 do {
                     System.out.println("1. Display list customers");
                     System.out.println("2. Add new customer");
@@ -83,10 +85,29 @@ public class FuramaController {
                 } while (chooseUserFromCase2 > 0 && chooseUserFromCase2 < 4);
                 break;
             case 3:
-                System.out.println("1. Display list facility");
-                System.out.println("2. Add new facility");
-                System.out.println("3. Display list facility maintenance");
-                System.out.println("4. Return main menu");
+                int chooseUserFromCase3;
+                do {
+                    System.out.println("1. Display list facility");
+                    System.out.println("2. Add new facility");
+                    System.out.println("3. Display list facility maintenance");
+                    System.out.println("4. Return main menu");
+                    chooseUserFromCase3 = sc.nextInt();
+                    switch (chooseUserFromCase3) {
+                        case 1:
+                            facilityService.displayList();
+                            System.out.println("Completed !!");
+                            break;
+                        case 2:
+                            facilityService.add();
+                            break;
+                        case 3:
+                            facilityService.displayListFacilityMaintenance();
+                            break;
+                        case 4:
+                            displayMainMenu();
+                            break;
+                    }
+                } while (chooseUserFromCase3 > 0 && chooseUserFromCase3 < 4);
                 break;
             case 4:
                 System.out.println("1. Add new booking");
