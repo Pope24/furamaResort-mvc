@@ -8,7 +8,7 @@ public class Employee extends Person {
     private String position;
     private long salary;
 
-    public Employee(String name, LocalDate dateOfBirth, String gender, long citizenIdentification, String phoneNumber, String email, String codeEmployee, String academicLevel, String position, long salary) {
+    public Employee(String name, LocalDate dateOfBirth, String gender, String citizenIdentification, String phoneNumber, String email, String codeEmployee, String academicLevel, String position, long salary) {
         super(name, dateOfBirth, gender, citizenIdentification, phoneNumber, email);
         this.codeEmployee = codeEmployee;
         this.academicLevel = academicLevel;

@@ -6,11 +6,11 @@ public abstract class Person {
     private String name;
     private LocalDate dateOfBirth;
     private String gender;
-    private long citizenIdentification;
+    private String citizenIdentification;
     private String phoneNumber;
     private String email;
 
-    public Person(String name, LocalDate dateOfBirth, String gender, long citizenIdentification, String phoneNumber, String email) {
+    public Person(String name, LocalDate dateOfBirth, String gender, String citizenIdentification, String phoneNumber, String email) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -43,11 +43,11 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public long getCitizenIdentification() {
+    public String getCitizenIdentification() {
         return citizenIdentification;
     }
 
-    public void setCitizenIdentification(long citizenIdentification) {
+    public void setCitizenIdentification(String citizenIdentification) {
         this.citizenIdentification = citizenIdentification;
     }
 

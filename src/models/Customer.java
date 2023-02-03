@@ -2,12 +2,12 @@ package models;
 
 import java.time.LocalDate;
 
-public class Customer extends Person{
+public class Customer extends Person {
     private String codeCustomer;
     private String customerType;
     private String address;
 
-    public Customer(String name, LocalDate dateOfBirth, String gender, long citizenIdentification, String phoneNumber, String email, String codeCustomer, String customerType, String address) {
+    public Customer(String name, LocalDate dateOfBirth, String gender, String citizenIdentification, String phoneNumber, String email, String codeCustomer, String customerType, String address) {
         super(name, dateOfBirth, gender, citizenIdentification, phoneNumber, email);
         this.codeCustomer = codeCustomer;
         this.customerType = customerType;

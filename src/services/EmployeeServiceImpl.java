@@ -14,12 +14,12 @@ public class EmployeeServiceImpl implements IEmployeeService {
     static List<Employee> employeeList = new ArrayList<>();
 
     static {
-        employeeList.add(new Employee("Nguyen Hoang Hai", LocalDate.of(1993, 06, 07), "Nam", 203874829, "09384839383", "haihoangbk@gmail.com", "75H1", "university", "Manager", 10000000));
-        employeeList.add(new Employee("Nguyen Minh Lanh", LocalDate.of(1990, 11, 01), "Nam", 229384849, "0917364929", "minhlanh@gmail.com", "92C1", "university", "Receptionist", 7500000));
-        employeeList.add(new Employee("Nguyen Van Minh", LocalDate.of(1998, 04, 12), "Nam", 83849439, "0938783622", "minhnguyenbk@gmail.com", "37N3", "university", "Maid", 7000000));
-        employeeList.add(new Employee("Chau To Trinh", LocalDate.of(1996, 07, 30), "Nu", 73875934, "09848493092", "totrinhchau@gmail.com", "77G2", "university", "Waitress", 5000000));
-        employeeList.add(new Employee("Nguyen Quoc Anh", LocalDate.of(2001, 03, 06), "Nam", 93848758, "0938293873", "quocanh@gmail.com", "74C1", "university", "Maid", 7000000));
-        employeeList.add(new Employee("Le Van Chinh", LocalDate.of(2003, 02, 24), "Nam", 83838463, "09999999999", "chinhpope@gmail.com", "73H1", "university", "CEO", 90000000));
+        employeeList.add(new Employee("Nguyen Hoang Hai", LocalDate.of(1993, 06, 07), "Nam", "2038748290", "09384839383", "haihoangbk@gmail.com", "75H1", "university", "Manager", 10000000));
+        employeeList.add(new Employee("Nguyen Minh Lanh", LocalDate.of(1990, 11, 01), "Nam", "2293874849", "0917364929", "minhlanh@gmail.com", "92C1", "university", "Receptionist", 7500000));
+        employeeList.add(new Employee("Nguyen Van Minh", LocalDate.of(1998, 04, 12), "Nam", "8384594399", "0938783622", "minhnguyenbk@gmail.com", "37N3", "university", "Maid", 7000000));
+        employeeList.add(new Employee("Chau To Trinh", LocalDate.of(1996, 07, 30), "Nu", "7387005934", "09848493092", "totrinhchau@gmail.com", "77G2", "university", "Waitress", 5000000));
+        employeeList.add(new Employee("Nguyen Quoc Anh", LocalDate.of(2001, 03, 06), "Nam", "9384458758", "0938293873", "quocanh@gmail.com", "74C1", "university", "Maid", 7000000));
+        employeeList.add(new Employee("Le Van Chinh", LocalDate.of(2003, 02, 24), "Nam", "8383688463", "09999999999", "chinhpope@gmail.com", "73H1", "university", "CEO", 90000000));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         System.out.println("Nhap gioi tinh:");
         String gender = sc.nextLine();
         System.out.println("Nhap CCCD: ");
-        long citizenIdentification = Long.parseLong(sc.nextLine());
+        String citizenIdentification = sc.nextLine();
         System.out.println("Nhap so dien thoai: ");
         String phoneNumber = sc.nextLine();
         System.out.println("Nhap email:");
