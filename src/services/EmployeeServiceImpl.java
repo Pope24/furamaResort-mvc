@@ -2,7 +2,9 @@ package services;
 
 import models.Employee;
 import services.IEmployeeService;
+import utils.DataEmployeeUtil;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 public class EmployeeServiceImpl implements IEmployeeService {
     Scanner sc = new Scanner(System.in);
     static List<Employee> employeeList = new ArrayList<>();
+    static DataEmployeeUtil dataEmployeeUtil = new DataEmployeeUtil();
 
     static {
         employeeList.add(new Employee("Nguyen Hoang Hai", LocalDate.of(1993, 06, 07), "Nam", "2038748290", "09384839383", "haihoangbk@gmail.com", "75H1", "university", "Manager", 10000000));
@@ -20,12 +23,18 @@ public class EmployeeServiceImpl implements IEmployeeService {
         employeeList.add(new Employee("Chau To Trinh", LocalDate.of(1996, 07, 30), "Nu", "7387005934", "09848493092", "totrinhchau@gmail.com", "77G2", "university", "Waitress", 5000000));
         employeeList.add(new Employee("Nguyen Quoc Anh", LocalDate.of(2001, 03, 06), "Nam", "9384458758", "0938293873", "quocanh@gmail.com", "74C1", "university", "Maid", 7000000));
         employeeList.add(new Employee("Le Van Chinh", LocalDate.of(2003, 02, 24), "Nam", "8383688463", "09999999999", "chinhpope@gmail.com", "73H1", "university", "CEO", 90000000));
+        try {
+            dataEmployeeUtil.writeDataEmployeeToFile(employeeList);
+        } catch (IOException e) {
+        }
     }
 
     @Override
     public void displayList() {
-        for (int i = 0; i < employeeList.size(); i++) {
-            System.out.println(employeeList.get(i).toString());
+        try {
+            dataEmployeeUtil.readDataCustomerFromFile();
+        } catch (IOException e) {
+
         }
     }
 
@@ -33,21 +42,33 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public boolean add() {
 
         if (employeeList.add(getInfoEmployee())) {
+            try {
+                dataEmployeeUtil.writeDataEmployeeToFile(employeeList);
+            } catch (IOException e) {
+            }
             return true;
         }
         return false;
     }
-    public boolean delete() {
+    public boolean delete() throws ClassNotFoundException {
         System.out.println("Nhap ma code cua nhan vien can xoa: ");
+        boolean flag = false;
         String codeEmployeeDelete = sc.nextLine();
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getCodeEmployee().equals(codeEmployeeDelete)) {
                 employeeList.remove(i);
+                try {
+                    dataEmployeeUtil.writeDataEmployeeToFile(employeeList);
+                } catch (IOException e) {
+                }
                 System.out.println("Deleted");
-                return true;
+                flag = true;
             }
         }
-        return false;
+        if (!flag) {
+            throw new ClassNotFoundException();
+        }
+        return flag;
     }
     public boolean edit() {
         System.out.println("Nhap ma code cua nhan vien can sua: ");
@@ -56,6 +77,10 @@ public class EmployeeServiceImpl implements IEmployeeService {
             if (employeeList.get(i).getCodeEmployee().equals(codeEmployeeEdit)) {
                 Employee newEmployee = getInfoEmployee();
                 employeeList.set(i, newEmployee);
+                try {
+                    dataEmployeeUtil.writeDataEmployeeToFile(employeeList);
+                } catch (IOException e) {
+                }
                 return true;
             }
         }

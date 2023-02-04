@@ -2,10 +2,7 @@ package services;
 
 import services.IFacilityService;
 
-import java.util.InputMismatchException;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class FacilityServiceImpl implements IFacilityService {
     static Map<String, Integer> serviceUsed = new LinkedHashMap<>();
@@ -68,7 +65,7 @@ public class FacilityServiceImpl implements IFacilityService {
     public void displayListFacilityMaintenance() {
         for (String key : serviceUsed.keySet()) {
             if (serviceUsed.get(key) == 5) {
-                System.out.println("Need to maintaining: " +serviceUsed.get(key));
+                System.out.println("Need to maintaining: " + serviceUsed.get(key));
             }
         }
     }

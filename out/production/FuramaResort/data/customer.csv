@@ -1,0 +1,6 @@
+name='Tran Van Y', dateOfBirth=1998-01-23, gender='Nam', citizenIdentification=9384757929, phoneNumber='0927463782', email='vany@gmail.com'codeCustomer='92C3', customerType='Silver', address='Quang Nam'
+name='Nguyen Thi Hong', dateOfBirth=2003-10-12, gender='Nu', citizenIdentification=8938748993, phoneNumber='0927839094', email='hognnguye@gmail.com'codeCustomer='73V1', customerType='Diamond', address='Quang Binh'
+name='Doan Thanh Hai', dateOfBirth=1999-12-01, gender='Nam', citizenIdentification=8372673949, phoneNumber='0372937489', email='thanhhai@gmail.com'codeCustomer='43G2', customerType='Member', address='Da Nang'
+name='Ho Thi Nuong', dateOfBirth=2002-01-30, gender='Nu', citizenIdentification=9284749293, phoneNumber='09157283987', email='thinuong@gmail.com'codeCustomer='77C2', customerType='Gold', address='Binh Dinh'
+name='Le Van Chinh', dateOfBirth=2003-02-24, gender='Nam', citizenIdentification=002838493849, phoneNumber='0927374928', email='chinhchinhchinh@gmail.com'codeCustomer='73H1', customerType='Diamond', address='Quang Binh'
+name='Chinh le', dateOfBirth=2003-02-24, gender='Nam', citizenIdentification=044203005749, phoneNumber='0915412406', email='chinhlevan@gmail.com'codeCustomer='73H1', customerType='Diamond', address='Quang Binh'
