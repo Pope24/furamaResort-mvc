@@ -1,5 +1,8 @@
 package utils;
 
+import models.Room;
+import models.Villa;
+
 import java.lang.reflect.Member;
 import java.util.Scanner;
 
@@ -119,4 +122,106 @@ public class MenuModifier {
         }
         return position;
     }
+
+    public Villa getInfoVillaService() {
+        Villa villaService = null;
+        try {
+            System.out.println("Nhap ten dich vu:");
+            String nameService = sc.nextLine();
+            System.out.println("Nhap dien tich co the su dung: ");
+            double usableArea = Double.parseDouble(sc.nextLine());
+            System.out.println("Nhap gia muon thue dich vu: ");
+            double rentalCosts = Double.parseDouble(sc.nextLine());
+            System.out.println("Nhap so nguoi su dung dich vu: ");
+            int maximumPeople = Integer.parseInt(sc.nextLine());
+            String rentalType = getRentalType();
+            System.out.println("Nhap tieu chuan phong tu 1 - > 5 sao: ");
+            int roomStandard = Integer.parseInt(sc.nextLine());
+            System.out.println("Nhap dien tich ho boi: ");
+            double poolArea = Double.parseDouble(sc.nextLine());
+            System.out.println("Ban muon o tang bao nhieu: ");
+            int numberOfFloor = Integer.parseInt(sc.nextLine());
+            villaService = new Villa(nameService, usableArea, rentalCosts, maximumPeople, rentalType, roomStandard, poolArea, numberOfFloor);
+        } catch (NumberFormatException e) {
+            return getInfoVillaService();
+        }
+        return villaService;
+    }
+
+    public Room getInfoRoomService() {
+        Room roomService = null;
+        try {
+            System.out.println("Nhap ten dich vu: ");
+            String nameService = sc.nextLine();
+            System.out.println("Nhap dien tich co the su dung: ");
+            double usableArea = Double.parseDouble(sc.nextLine());
+            System.out.println("Nhap gia muon thue dich vu: ");
+            double rentalCosts = Double.parseDouble(sc.nextLine());
+            System.out.println("Nhap so nguoi su dung dich vu: ");
+            int maximumPeople = Integer.parseInt(sc.nextLine());
+            String rentalType = getRentalType();
+            String freeService = getFreeService();
+            roomService = new Room(nameService, usableArea, rentalCosts, maximumPeople, rentalType, freeService);
+        } catch (NumberFormatException e) {
+            return getInfoRoomService();
+        }
+        return roomService;
+    }
+
+    public String getRentalType() {
+        int chooseType;
+        String rentalType = null;
+        try {
+            System.out.println("Ban muon thue theo kieu nao: ");
+            System.out.println("1. Thue theo ngay.");
+            System.out.println("2. Thue theo thang.");
+            System.out.println("3. Thue theo nam.");
+            System.out.println("Nhap kieu ban muon thue: ");
+            chooseType = Integer.parseInt(sc.nextLine());
+            switch (chooseType) {
+                case 1:
+                    rentalType = "Thue theo ngay";
+                    break;
+                case 2:
+                    rentalType = "Thue theo thang";
+                    break;
+                case 3:
+                    rentalType = "Thue theo nam";
+                    break;
+                default:
+                    System.out.println("Khong co muc nay !! Xin moi ban nhap lai: ");
+                    return getRentalType();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Ban nhap sai quy dinh !! Xin moi ban nhap lai: ");
+            return getRentalType();
+        }
+        return rentalType;
+    }
+
+    public String getFreeService() {
+        int chooseType;
+        System.out.println("Ban muon theo kem dich vu mien phi nao ?");
+        System.out.println("1. Nuoc uong mien phi");
+        System.out.println("2. Phuc vu com mien phi");
+        System.out.println("3. Xong hoi mien phi");
+        try {
+            chooseType = Integer.parseInt(sc.nextLine());
+            switch (chooseType) {
+                case 1:
+                    return "Nuoc uong mien phi";
+                case 2:
+                    return "Phuc vu com mien phi";
+                case 3:
+                    return "Xong hoi mien phi";
+                default:
+                    System.out.println("Khong co muc nay!! Moi quy khach chon lai...");
+                    return getFreeService();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Khong co muc nay!! Moi quy khach chon lai...");
+            return getFreeService();
+        }
+    }
+
 }

@@ -1,25 +1,85 @@
 package utils;
 
+import models.Room;
+import models.Villa;
+
 import java.io.*;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DataFacilityUtil {
     BufferedWriter bufferedWriterRoom = null;
     BufferedReader bufferedReaderRoom = null;
-    public void writeDataRoomToFile(String key, int value) {
+    BufferedReader bufferedReaderVilla = null;
+    BufferedWriter bufferedWriterVilla = null;
+
+    public void writeDataRoomToFile(Map<Room, Integer> dataRoomService) throws IOException {
         try {
             bufferedWriterRoom = new BufferedWriter(new FileWriter("C:\\CodeGym\\FuramaResort\\src\\data\\room.csv"));
-            bufferedWriterRoom.write(key +", " + value);
+            StringBuilder dataString = new StringBuilder();
+            for (Room room : dataRoomService.keySet()) {
+                dataString.append(room);
+                dataString.append(", " + dataRoomService.get(room) + "\n");
+            }
+            bufferedWriterRoom.write(String.valueOf(dataString));
         } catch (IOException e) {
-            System.err.println("Can not write file !!!");
+            System.out.println("Can not write to file !! Try again...");
+        } finally {
+            bufferedWriterRoom.close();
         }
     }
-    public void readDataRoomFromFile() {
+
+    public void readDataRoomFromFile() throws IOException {
+        Map<Room, Integer> dataRoomService = new LinkedHashMap<Room, Integer>();
         try {
             bufferedReaderRoom = new BufferedReader(new FileReader("C:\\CodeGym\\FuramaResort\\src\\data\\room.csv"));
-            System.out.println(bufferedReaderRoom.read());
+            String line;
+            while ((line = bufferedReaderRoom.readLine()) != null) {
+                String[] data = line.split(", ");
+                dataRoomService.put(new Room(data[0], Double.parseDouble(data[1]), Double.parseDouble(data[2]), Integer.parseInt(data[3]), data[4], data[5]), Integer.parseInt(data[6]));
+            }
+            for (Map.Entry<Room, Integer> entry : dataRoomService.entrySet()) {
+                System.out.println(entry);
+            }
         } catch (IOException e) {
-            System.err.println("Can not read file !!");
+            System.out.println("Can not read data from file");
+        } finally {
+            bufferedReaderRoom.close();
+        }
+    }
+
+    public void writeDataVillaToFile(Map<Villa, Integer> dataVillaService) throws IOException {
+        try {
+            bufferedWriterVilla = new BufferedWriter(new FileWriter("C:\\CodeGym\\FuramaResort\\src\\data\\villa.csv"));
+            StringBuilder dataString = new StringBuilder();
+            for (Villa villa : dataVillaService.keySet()) {
+                dataString.append(villa);
+                dataString.append(", " + dataVillaService.get(villa) + "\n");
+            }
+            bufferedWriterVilla.write(String.valueOf(dataString));
+        } catch (IOException e) {
+            System.out.println("Can not write to file !! Try again...");
+        } finally {
+            bufferedWriterVilla.close();
+        }
+    }
+
+    public void readDataVillaFromFile() throws IOException {
+        Map<Villa, Integer> dataVillaService = new LinkedHashMap<Villa, Integer>();
+        try {
+            bufferedReaderVilla = new BufferedReader(new FileReader("C:\\CodeGym\\FuramaResort\\src\\data\\villa.csv"));
+            String line;
+            while ((line = bufferedReaderVilla.readLine()) != null) {
+                String[] data = line.split(", ");
+                dataVillaService.put(new Villa(data[0], Double.parseDouble(data[1]), Double.parseDouble(data[2]), Integer.parseInt(data[3]), data[4], Integer.parseInt(data[5]), Double.parseDouble(data[6]), Integer.parseInt(data[7])), Integer.parseInt(data[8]));
+            }
+            for (Map.Entry<Villa, Integer> entry : dataVillaService.entrySet()) {
+                System.out.println(entry);
+            }
+        } catch (IOException e) {
+            System.out.println("Can not read data from file");
+        } finally {
+            bufferedReaderVilla.close();
         }
     }
 }

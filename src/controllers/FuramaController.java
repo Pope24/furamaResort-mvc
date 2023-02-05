@@ -5,6 +5,7 @@ import services.CustomerServiceImpl;
 import services.EmployeeServiceImpl;
 import services.FacilityServiceImpl;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -116,6 +117,7 @@ public class FuramaController {
                                 break;
                             case 2:
                                 facilityService.add();
+                                System.out.println("Added !!");
                                 break;
                             case 3:
                                 facilityService.displayListFacilityMaintenance();
@@ -127,6 +129,7 @@ public class FuramaController {
                     } catch (NumberFormatException e) {
                         System.out.println("Ky tu ban nhap khong phai la so !! Moi ban nhap lai ...");
                         subMenu(chooseUser);
+                    } catch (IOException e) {
                     }
                 } while (chooseUserFromCase3 > 0 && chooseUserFromCase3 < 4);
                 break;

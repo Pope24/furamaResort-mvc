@@ -1,13 +1,13 @@
 package models;
 
-import java.time.LocalDate;
+import java.lang.String;
 
 public class Villa extends Facility {
     private int roomStandard;
     private double poolArea;
     private int numberOfFloor;
 
-    public Villa(String nameService, double usableArea, double rentalCosts, int maximumPeople, LocalDate rentalType, int roomStandard, double poolArea, int numberOfFloor) {
+    public Villa(String nameService, double usableArea, double rentalCosts, int maximumPeople, String rentalType, int roomStandard, double poolArea, int numberOfFloor) {
         super(nameService, usableArea, rentalCosts, maximumPeople, rentalType);
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;

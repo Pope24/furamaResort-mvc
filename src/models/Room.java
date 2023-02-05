@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Room extends Facility {
     private String freeService;
 
-    public Room(String nameService, double usableArea, double rentalCosts, int maximumPeople, LocalDate rentalType, String freeService) {
+    public Room(String nameService, double usableArea, double rentalCosts, int maximumPeople, String rentalType, String freeService) {
         super(nameService, usableArea, rentalCosts, maximumPeople, rentalType);
         this.freeService = freeService;
     }

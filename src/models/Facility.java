@@ -1,15 +1,15 @@
 package models;
 
-import java.time.LocalDate;
+import java.lang.String;
 
 public abstract class Facility {
     private String nameService;
     private double usableArea;
     private double rentalCosts;
     private int maximumPeople;
-    private LocalDate rentalType;
+    private String rentalType;
 
-    public Facility(String nameService, double usableArea, double rentalCosts, int maximumPeople, LocalDate rentalType) {
+    public Facility(String nameService, double usableArea, double rentalCosts, int maximumPeople, String rentalType) {
         this.nameService = nameService;
         this.usableArea = usableArea;
         this.rentalCosts = rentalCosts;
@@ -49,11 +49,11 @@ public abstract class Facility {
         this.maximumPeople = maximumPeople;
     }
 
-    public LocalDate getRentalType() {
+    public String getRentalType() {
         return rentalType;
     }
 
-    public void setRentalType(LocalDate rentalType) {
+    public void setRentalType(String rentalType) {
         this.rentalType = rentalType;
     }
 
