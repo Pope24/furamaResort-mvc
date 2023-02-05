@@ -1,16 +1,16 @@
 package models;
 
-import java.time.LocalDate;
+import java.lang.String;
 
 public abstract class Person {
     private String name;
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     private String gender;
     private String citizenIdentification;
     private String phoneNumber;
     private String email;
 
-    public Person(String name, LocalDate dateOfBirth, String gender, String citizenIdentification, String phoneNumber, String email) {
+    public Person(String name, String dateOfBirth, String gender, String citizenIdentification, String phoneNumber, String email) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -27,11 +27,11 @@ public abstract class Person {
         this.name = name;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -70,11 +70,11 @@ public abstract class Person {
     @Override
     public String toString() {
         return
-                "name='" + name + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", gender='" + gender + '\'' +
-                ", citizenIdentification=" + citizenIdentification +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'';
+                name +
+                ", " + dateOfBirth +
+                ", " + gender +
+                ", " + citizenIdentification +
+                ", " + phoneNumber +
+                ", " + email;
     }
 }

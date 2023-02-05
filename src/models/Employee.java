@@ -1,14 +1,14 @@
 package models;
 
-import java.time.LocalDate;
+import java.lang.String;
 
 public class Employee extends Person {
     private String codeEmployee;
     private String academicLevel;
     private String position;
-    private long salary;
+    private String salary;
 
-    public Employee(String name, LocalDate dateOfBirth, String gender, String citizenIdentification, String phoneNumber, String email, String codeEmployee, String academicLevel, String position, long salary) {
+    public Employee(String name, String dateOfBirth, String gender, String citizenIdentification, String phoneNumber, String email, String codeEmployee, String academicLevel, String position, String salary) {
         super(name, dateOfBirth, gender, citizenIdentification, phoneNumber, email);
         this.codeEmployee = codeEmployee;
         this.academicLevel = academicLevel;
@@ -40,11 +40,11 @@ public class Employee extends Person {
         this.position = position;
     }
 
-    public long getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(long salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 
@@ -52,9 +52,9 @@ public class Employee extends Person {
     public String toString() {
         return
                 super.toString() +
-                ", codeEmployee='" + codeEmployee + '\'' +
-                ", academicLevel='" + academicLevel + '\'' +
-                ", position='" + position + '\'' +
-                ", salary=" + salary;
+                ", " + codeEmployee +
+                ", " + academicLevel +
+                ", " + position +
+                ", " + salary;
     }
 }

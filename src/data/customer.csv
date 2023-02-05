@@ -1,5 +1,5 @@
-name='Tran Van Y', dateOfBirth=1998-01-23, gender='Nam', citizenIdentification=9384757929, phoneNumber='0927463782', email='vany@gmail.com'codeCustomer='92C3', customerType='Silver', address='Quang Nam'
-name='Nguyen Thi Hong', dateOfBirth=2003-10-12, gender='Nu', citizenIdentification=8938748993, phoneNumber='0927839094', email='hognnguye@gmail.com'codeCustomer='73V1', customerType='Diamond', address='Quang Binh'
-name='Doan Thanh Hai', dateOfBirth=1999-12-01, gender='Nam', citizenIdentification=8372673949, phoneNumber='0372937489', email='thanhhai@gmail.com'codeCustomer='43G2', customerType='Member', address='Da Nang'
-name='Ho Thi Nuong', dateOfBirth=2002-01-30, gender='Nu', citizenIdentification=9284749293, phoneNumber='09157283987', email='thinuong@gmail.com'codeCustomer='77C2', customerType='Gold', address='Binh Dinh'
-name='Tran Thi Ngoc Lan', dateOfBirth=2004-07-05, gender='Nu', citizenIdentification=0028492847, phoneNumber='09306526765', email='ngocnan@gmail.com'codeCustomer='73H1', customerType='Diamond', address='Quang Binh'
+Tran Van Y, 23/01/1998, Nam, 9384757929, 0927463782, vany@gmail.com, 92C3, Silver, Quang Nam
+Nguyen Thi Hong, 12/10/2003, Nu, 8938748993, 0927839094, hognnguye@gmail.com, 73V1, Diamond, Quang Binh
+Doan Thanh Hai, 01/12/2000, Nam, 8372673949, 0372937489, thanhhai@gmail.com, 43G2, Member, Da Nang
+Ho Thi Nuong, 30/01/2002, Nu, 9284749293, 09157283987, thinuong@gmail.com, 77C2, Gold, Binh Dinh
+Tran Thi Ngoc Lan, 05/07/2004, Nu, 0028492847, 09306526765, ngocnan@gmail.com, 73H1, Diamond, Quang Binh

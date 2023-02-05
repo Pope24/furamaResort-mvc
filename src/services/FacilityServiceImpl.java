@@ -1,11 +1,14 @@
 package services;
 
 import services.IFacilityService;
+import utils.DataFacilityUtil;
 
+import java.io.IOException;
 import java.util.*;
 
 public class FacilityServiceImpl implements IFacilityService {
     static Map<String, Integer> serviceUsed = new LinkedHashMap<>();
+    static DataFacilityUtil dataFacilityUtil = new DataFacilityUtil();
 
     static {
         serviceUsed.put("Rental villa service", 0);
@@ -16,9 +19,7 @@ public class FacilityServiceImpl implements IFacilityService {
 
     @Override
     public void displayList() {
-        for (Map.Entry<String, Integer> service : serviceUsed.entrySet()) {
-            System.out.println(service);
-        }
+        dataFacilityUtil.readDataRoomFromFile();
     }
 
     @Override
@@ -63,10 +64,6 @@ public class FacilityServiceImpl implements IFacilityService {
     }
 
     public void displayListFacilityMaintenance() {
-        for (String key : serviceUsed.keySet()) {
-            if (serviceUsed.get(key) == 5) {
-                System.out.println("Need to maintaining: " + serviceUsed.get(key));
-            }
-        }
+
     }
 }

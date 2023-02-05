@@ -9,6 +9,14 @@ public abstract class Facility {
     private int maximumPeople;
     private LocalDate rentalType;
 
+    public Facility(String nameService, double usableArea, double rentalCosts, int maximumPeople, LocalDate rentalType) {
+        this.nameService = nameService;
+        this.usableArea = usableArea;
+        this.rentalCosts = rentalCosts;
+        this.maximumPeople = maximumPeople;
+        this.rentalType = rentalType;
+    }
+
     public String getNameService() {
         return nameService;
     }
@@ -47,5 +55,15 @@ public abstract class Facility {
 
     public void setRentalType(LocalDate rentalType) {
         this.rentalType = rentalType;
+    }
+
+    @Override
+    public String toString() {
+        return
+                nameService +
+                ", " + usableArea +
+                ", " + rentalCosts +
+                ", " + maximumPeople +
+                ", " + rentalType;
     }
 }
