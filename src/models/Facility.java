@@ -3,18 +3,28 @@ package models;
 import java.lang.String;
 
 public abstract class Facility {
+    private String codeService;
     private String nameService;
     private double usableArea;
     private double rentalCosts;
     private int maximumPeople;
     private String rentalType;
 
-    public Facility(String nameService, double usableArea, double rentalCosts, int maximumPeople, String rentalType) {
+    public Facility(String codeService, String nameService, double usableArea, double rentalCosts, int maximumPeople, String rentalType) {
+        this.codeService = codeService;
         this.nameService = nameService;
         this.usableArea = usableArea;
         this.rentalCosts = rentalCosts;
         this.maximumPeople = maximumPeople;
         this.rentalType = rentalType;
+    }
+
+    public String getCodeService() {
+        return codeService;
+    }
+
+    public void setCodeService(String codeService) {
+        this.codeService = codeService;
     }
 
     public String getNameService() {
@@ -60,10 +70,11 @@ public abstract class Facility {
     @Override
     public String toString() {
         return
-                nameService +
-                ", " + usableArea +
-                ", " + rentalCosts +
-                ", " + maximumPeople +
-                ", " + rentalType;
+                        codeService +
+                        ", " + nameService +
+                        ", " + usableArea +
+                        ", " + rentalCosts +
+                        ", " + maximumPeople +
+                        ", " + rentalType;
     }
 }

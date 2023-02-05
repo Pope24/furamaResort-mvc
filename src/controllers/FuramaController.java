@@ -1,12 +1,15 @@
 package controllers;
 
 import models.Employee;
+import models.Facility;
+import models.Villa;
 import services.CustomerServiceImpl;
 import services.EmployeeServiceImpl;
 import services.FacilityServiceImpl;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 import static com.sun.javafx.geom.Curve.next;
@@ -42,8 +45,7 @@ public class FuramaController {
                             case 3:
                                 try {
                                     employeeService.delete();
-                                }
-                                catch (ClassNotFoundException e) {
+                                } catch (ClassNotFoundException e) {
                                     System.err.println("Khong the tim thay nhan vien !!");
                                 }
                                 break;

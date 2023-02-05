@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class MenuModifier {
     static Scanner sc = new Scanner(System.in);
+    RegexAddFacility regexAddFacility = new RegexAddFacility();
 
     public String getCustomerType() {
         int chooseType = 0;
@@ -126,23 +127,50 @@ public class MenuModifier {
     public Villa getInfoVillaService() {
         Villa villaService = null;
         try {
-            System.out.println("Nhap ten dich vu:");
-            String nameService = sc.nextLine();
-            System.out.println("Nhap dien tich co the su dung: ");
-            double usableArea = Double.parseDouble(sc.nextLine());
-            System.out.println("Nhap gia muon thue dich vu: ");
-            double rentalCosts = Double.parseDouble(sc.nextLine());
-            System.out.println("Nhap so nguoi su dung dich vu: ");
-            int maximumPeople = Integer.parseInt(sc.nextLine());
+            String codeService;
+            do {
+                System.out.println("Nhap ma dich vu theo format (SVVL-YYYY): ");
+                codeService = sc.nextLine();
+            } while (!regexAddFacility.checkCodeVillaServiceRegex(codeService));
+            String nameService;
+            do {
+                System.out.println("Nhap ten dich vu (Chu cai dau viet hoa):");
+                nameService = sc.nextLine();
+            } while (!regexAddFacility.checkNameServiceRegex(nameService));
+            double usableArea;
+            do {
+                System.out.println("Nhap dien tich su dung (>= 30 m^2): ");
+                usableArea = Double.parseDouble(sc.nextLine());
+            } while (usableArea < 30);
+            double rentalCosts;
+            do {
+                System.out.println("Nhap gia muon thue dich vu ( >0 ): ");
+                rentalCosts = Double.parseDouble(sc.nextLine());
+            } while (rentalCosts <= 0);
+            int maximumPeople;
+            do {
+                System.out.println("Nhap so nguoi su dung dich vu: ");
+                maximumPeople = Integer.parseInt(sc.nextLine());
+            } while (maximumPeople < 1 || maximumPeople >= 20);
             String rentalType = getRentalType();
-            System.out.println("Nhap tieu chuan phong tu 1 - > 5 sao: ");
-            int roomStandard = Integer.parseInt(sc.nextLine());
-            System.out.println("Nhap dien tich ho boi: ");
-            double poolArea = Double.parseDouble(sc.nextLine());
-            System.out.println("Ban muon o tang bao nhieu: ");
-            int numberOfFloor = Integer.parseInt(sc.nextLine());
-            villaService = new Villa(nameService, usableArea, rentalCosts, maximumPeople, rentalType, roomStandard, poolArea, numberOfFloor);
+            int roomStandard;
+            do {
+                System.out.println("Nhap tieu chuan phong tu 1 - > 5 sao: ");
+                roomStandard = Integer.parseInt(sc.nextLine());
+            } while ((roomStandard < 1 || roomStandard > 5));
+            double poolArea;
+            do {
+                System.out.println("Nhap dien tich ho boi (>= 30 m^2): ");
+                poolArea = Double.parseDouble(sc.nextLine());
+            } while (poolArea < 30);
+            int numberOfFloor;
+            do {
+                System.out.println("Ban muon o tang bao nhieu: ");
+                numberOfFloor = Integer.parseInt(sc.nextLine());
+            } while (numberOfFloor <= 0);
+            villaService = new Villa(codeService, nameService, usableArea, rentalCosts, maximumPeople, rentalType, roomStandard, poolArea, numberOfFloor);
         } catch (NumberFormatException e) {
+            System.out.println("Ban nhap sai format !! Moi ban nhap lai ...");
             return getInfoVillaService();
         }
         return villaService;
@@ -151,17 +179,34 @@ public class MenuModifier {
     public Room getInfoRoomService() {
         Room roomService = null;
         try {
-            System.out.println("Nhap ten dich vu: ");
-            String nameService = sc.nextLine();
-            System.out.println("Nhap dien tich co the su dung: ");
-            double usableArea = Double.parseDouble(sc.nextLine());
-            System.out.println("Nhap gia muon thue dich vu: ");
-            double rentalCosts = Double.parseDouble(sc.nextLine());
-            System.out.println("Nhap so nguoi su dung dich vu: ");
-            int maximumPeople = Integer.parseInt(sc.nextLine());
+            String codeService;
+            do {
+                System.out.println("Nhap ma dich vu theo format (SVRO-YYYY): ");
+                codeService = sc.nextLine();
+            } while (!regexAddFacility.checkCodeRoomServiceRegex(codeService));
+            String nameService;
+            do {
+                System.out.println("Nhap ten dich vu (Chu cai dau viet hoa):");
+                nameService = sc.nextLine();
+            } while (!regexAddFacility.checkNameServiceRegex(nameService));
+            double usableArea;
+            do {
+                System.out.println("Nhap dien tich su dung (>= 30 m^2): ");
+                usableArea = Double.parseDouble(sc.nextLine());
+            } while (usableArea < 30);
+            double rentalCosts;
+            do {
+                System.out.println("Nhap gia muon thue dich vu ( >0 ): ");
+                rentalCosts = Double.parseDouble(sc.nextLine());
+            } while (rentalCosts <= 0);
+            int maximumPeople;
+            do {
+                System.out.println("Nhap so nguoi su dung dich vu: ");
+                maximumPeople = Integer.parseInt(sc.nextLine());
+            } while (maximumPeople < 1 || maximumPeople >= 20);
             String rentalType = getRentalType();
             String freeService = getFreeService();
-            roomService = new Room(nameService, usableArea, rentalCosts, maximumPeople, rentalType, freeService);
+            roomService = new Room(codeService, nameService, usableArea, rentalCosts, maximumPeople, rentalType, freeService);
         } catch (NumberFormatException e) {
             return getInfoRoomService();
         }

@@ -36,10 +36,11 @@ public class DataFacilityUtil {
             String line;
             while ((line = bufferedReaderRoom.readLine()) != null) {
                 String[] data = line.split(", ");
-                dataRoomService.put(new Room(data[0], Double.parseDouble(data[1]), Double.parseDouble(data[2]), Integer.parseInt(data[3]), data[4], data[5]), Integer.parseInt(data[6]));
+                dataRoomService.put(new Room(
+                        data[0], data[1], Double.parseDouble(data[2]), Double.parseDouble(data[3]), Integer.parseInt(data[4]), data[5], data[6]), Integer.parseInt(data[7]));
             }
             for (Map.Entry<Room, Integer> entry : dataRoomService.entrySet()) {
-                System.out.println(entry);
+                System.out.println(entry.getKey() + ", " + entry.getValue());
             }
         } catch (IOException e) {
             System.out.println("Can not read data from file");
@@ -71,10 +72,10 @@ public class DataFacilityUtil {
             String line;
             while ((line = bufferedReaderVilla.readLine()) != null) {
                 String[] data = line.split(", ");
-                dataVillaService.put(new Villa(data[0], Double.parseDouble(data[1]), Double.parseDouble(data[2]), Integer.parseInt(data[3]), data[4], Integer.parseInt(data[5]), Double.parseDouble(data[6]), Integer.parseInt(data[7])), Integer.parseInt(data[8]));
+                dataVillaService.put(new Villa(data[0], data[1], Double.parseDouble(data[2]), Double.parseDouble(data[3]), Integer.parseInt(data[4]), data[5], Integer.parseInt(data[6]), Double.parseDouble(data[7]), Integer.parseInt(data[8])), Integer.parseInt(data[9]));
             }
             for (Map.Entry<Villa, Integer> entry : dataVillaService.entrySet()) {
-                System.out.println(entry);
+                System.out.println(entry.getKey() + ", " + entry.getValue());
             }
         } catch (IOException e) {
             System.out.println("Can not read data from file");

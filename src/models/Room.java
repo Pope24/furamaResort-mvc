@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Room extends Facility {
     private String freeService;
 
-    public Room(String nameService, double usableArea, double rentalCosts, int maximumPeople, String rentalType, String freeService) {
-        super(nameService, usableArea, rentalCosts, maximumPeople, rentalType);
+    public Room(String codeService, String nameService, double usableArea, double rentalCosts, int maximumPeople, String rentalType, String freeService) {
+        super(codeService, nameService, usableArea, rentalCosts, maximumPeople, rentalType);
         this.freeService = freeService;
     }
 
@@ -20,7 +20,7 @@ public class Room extends Facility {
 
     @Override
     public String toString() {
-        return  super.toString() +
+        return super.toString() +
                 ", " + freeService;
     }
 }
