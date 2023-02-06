@@ -1,14 +1,17 @@
 package utils;
 
+import models.Customer;
 import models.Room;
 import models.Villa;
 
+import java.io.IOException;
 import java.lang.reflect.Member;
-import java.util.Scanner;
+import java.util.*;
 
 public class MenuModifier {
     static Scanner sc = new Scanner(System.in);
     RegexAddFacility regexAddFacility = new RegexAddFacility();
+    DataFacilityUtil dataFacilityUtil = new DataFacilityUtil();
 
     public String getCustomerType() {
         int chooseType = 0;
@@ -267,6 +270,73 @@ public class MenuModifier {
             System.out.println("Khong co muc nay!! Moi quy khach chon lai...");
             return getFreeService();
         }
+    }
+
+    public String getCodeCustomer() {
+        String codeCustomerChosen = null;
+        boolean flag = false;
+        try {
+            List<Customer> customerList = new LinkedList<>();
+            DataCustomersUtil dataCustomersUtil = new DataCustomersUtil();
+            customerList = dataCustomersUtil.readDataFromCustomerFile();
+            System.out.println("Danh sach ma khach hang: ");
+            for (Customer customer : customerList) {
+                System.out.println(customer.getCodeCustomer());
+            }
+            System.out.println("Moi ban chon ma khach hang: ");
+            codeCustomerChosen = sc.nextLine();
+            for (Customer customer : customerList) {
+                if (codeCustomerChosen.equals(customer.getCodeCustomer())) {
+                    flag = true;
+                    return codeCustomerChosen;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Can not get code customer !!!");
+        }
+        if (!flag) {
+            System.out.println("Ban nhap sai format !! Moi ban nhap lai...");
+            return getCodeCustomer();
+        }
+        return codeCustomerChosen;
+    }
+
+    public String getCodeService() {
+        Map<Room, Integer> dataRoomService = new LinkedHashMap<>();
+        Map<Villa, Integer> dataVillaService = new LinkedHashMap<>();
+        String codeService = null;
+        boolean flag = false;
+        try {
+            dataVillaService = dataFacilityUtil.readDataVillaFromFile();
+            dataRoomService = dataFacilityUtil.readDataRoomFromFile();
+            System.out.println("Danh sach ma dich vu: ");
+            for (Map.Entry<Room, Integer> entry : dataRoomService.entrySet()) {
+                System.out.println(entry.getKey().getCodeService());
+            }
+            for (Map.Entry<Villa, Integer> entry : dataVillaService.entrySet()) {
+                System.out.println(entry.getKey().getCodeService());
+            }
+            System.out.println("Moi ban chon ma dich vu: ");
+            codeService = sc.nextLine();
+            for (Map.Entry<Room, Integer> entry : dataRoomService.entrySet()) {
+                if (codeService.equals(entry.getKey().getCodeService())) {
+                    flag = true;
+                    return codeService;
+                }
+            }
+            for (Map.Entry<Villa, Integer> entry : dataVillaService.entrySet()) {
+                if (codeService.equals(entry.getKey().getCodeService())) {
+                    flag = true;
+                    return codeService;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Can not get data !!");
+        }
+        if (!flag) {
+            return getCodeService();
+        }
+        return codeService;
     }
 
 }

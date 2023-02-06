@@ -24,7 +24,7 @@ public class DataCustomersUtil {
             bufferedWriter.close();
         }
     }
-    public void readDataFromCustomerFile() throws IOException{
+    public List<Customer> readDataFromCustomerFile() throws IOException{
         BufferedReader bufferedReader = null;
         List<Customer> customerList = new LinkedList<>();
         try {
@@ -34,15 +34,14 @@ public class DataCustomersUtil {
                 String[] customer = line.split(", ");
                 customerList.add(new Customer(customer[0],customer[1],customer[2],customer[3],customer[4],customer[5],customer[6],customer[7],customer[8]));
             }
-            for (Customer customer: customerList) {
-                System.out.println(customer.toString());
-            }
+            return customerList;
         } catch (FileNotFoundException e) {
             System.err.println("Can not find file !!!");
         } catch (IOException e) {
             System.err.println("Can not read data from file !!!");
         } finally {
             bufferedReader.close();
+            return customerList;
         }
     }
 }

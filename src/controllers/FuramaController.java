@@ -3,6 +3,7 @@ package controllers;
 import models.Employee;
 import models.Facility;
 import models.Villa;
+import services.BookingServiceImpl;
 import services.CustomerServiceImpl;
 import services.EmployeeServiceImpl;
 import services.FacilityServiceImpl;
@@ -19,6 +20,7 @@ public class FuramaController {
     EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     CustomerServiceImpl customerService = new CustomerServiceImpl();
     FacilityServiceImpl facilityService = new FacilityServiceImpl();
+    BookingServiceImpl bookingService = new BookingServiceImpl();
 
     public void subMenu(int chooseUser) {
         switch (chooseUser) {
@@ -136,9 +138,32 @@ public class FuramaController {
                 } while (chooseUserFromCase3 > 0 && chooseUserFromCase3 < 4);
                 break;
             case 4:
-                System.out.println("1. Add new booking");
-                System.out.println("2. Display list booking");
-                System.out.println("3. Return main menu");
+                int chooseUserFromCase4 = 0;
+                do {
+                    System.out.println("1. Add new booking");
+                    System.out.println("2. Display list booking");
+                    System.out.println("3. Return main menu");
+                    try {
+                        chooseUserFromCase4 = Integer.parseInt(sc.nextLine());
+                        switch (chooseUserFromCase4) {
+                            case 1:
+                                bookingService.add();
+                                break;
+                            case 2:
+                                bookingService.displayList();
+                                break;
+                            case 3:
+                                displayMainMenu();
+                                break;
+                            default:
+                                System.out.println("Khong co muc nay !! Moi ban chon lai ...");
+                                subMenu(chooseUser);
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Ban nhap sai format !! Moi ban chon lai ...");
+                        subMenu(chooseUser);
+                    }
+                } while (chooseUserFromCase4 > 0 && chooseUserFromCase4 < 3);
                 break;
             case 5:
                 System.out.println("1. Display list customers use service");

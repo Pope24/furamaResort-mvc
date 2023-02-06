@@ -33,8 +33,14 @@ public class FacilityServiceImpl implements IFacilityService {
 
     @Override
     public void displayList() throws IOException {
-        dataFacilityUtil.readDataRoomFromFile();
-        dataFacilityUtil.readDataVillaFromFile();
+        Map<Room, Integer> dataRoomFacility = dataFacilityUtil.readDataRoomFromFile();
+        for (Map.Entry<Room, Integer> entry: dataRoomFacility.entrySet()) {
+            System.out.println(entry.getKey() + ", " + entry.getValue());
+        }
+        Map<Villa, Integer> dataVillaFromFileFacility = dataFacilityUtil.readDataVillaFromFile();
+        for (Map.Entry<Villa, Integer> entry: dataVillaFromFileFacility.entrySet()) {
+            System.out.println(entry.getKey() + ", " + entry.getValue());
+        }
     }
 
     @Override

@@ -29,7 +29,7 @@ public class DataFacilityUtil {
         }
     }
 
-    public void readDataRoomFromFile() throws IOException {
+    public Map<Room, Integer> readDataRoomFromFile() throws IOException {
         Map<Room, Integer> dataRoomService = new LinkedHashMap<Room, Integer>();
         try {
             bufferedReaderRoom = new BufferedReader(new FileReader("C:\\CodeGym\\FuramaResort\\src\\data\\room.csv"));
@@ -39,14 +39,13 @@ public class DataFacilityUtil {
                 dataRoomService.put(new Room(
                         data[0], data[1], Double.parseDouble(data[2]), Double.parseDouble(data[3]), Integer.parseInt(data[4]), data[5], data[6]), Integer.parseInt(data[7]));
             }
-            for (Map.Entry<Room, Integer> entry : dataRoomService.entrySet()) {
-                System.out.println(entry.getKey() + ", " + entry.getValue());
-            }
+            return dataRoomService;
         } catch (IOException e) {
             System.out.println("Can not read data from file");
         } finally {
             bufferedReaderRoom.close();
         }
+        return dataRoomService;
     }
 
     public void writeDataVillaToFile(Map<Villa, Integer> dataVillaService) throws IOException {
@@ -65,7 +64,7 @@ public class DataFacilityUtil {
         }
     }
 
-    public void readDataVillaFromFile() throws IOException {
+    public Map<Villa, Integer> readDataVillaFromFile() throws IOException {
         Map<Villa, Integer> dataVillaService = new LinkedHashMap<Villa, Integer>();
         try {
             bufferedReaderVilla = new BufferedReader(new FileReader("C:\\CodeGym\\FuramaResort\\src\\data\\villa.csv"));
@@ -74,13 +73,12 @@ public class DataFacilityUtil {
                 String[] data = line.split(", ");
                 dataVillaService.put(new Villa(data[0], data[1], Double.parseDouble(data[2]), Double.parseDouble(data[3]), Integer.parseInt(data[4]), data[5], Integer.parseInt(data[6]), Double.parseDouble(data[7]), Integer.parseInt(data[8])), Integer.parseInt(data[9]));
             }
-            for (Map.Entry<Villa, Integer> entry : dataVillaService.entrySet()) {
-                System.out.println(entry.getKey() + ", " + entry.getValue());
-            }
+            return dataVillaService;
         } catch (IOException e) {
             System.out.println("Can not read data from file");
         } finally {
             bufferedReaderVilla.close();
         }
+        return dataVillaService;
     }
 }

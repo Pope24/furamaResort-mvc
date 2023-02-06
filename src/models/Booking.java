@@ -2,12 +2,20 @@ package models;
 
 import java.time.LocalDate;
 
-public class Booking {
+public class Booking implements Comparable<Booking>{
     private String codeBooking;
     private LocalDate startDateBooking;
     private LocalDate endDateBooking;
     private String codeCustomer;
     private String nameService;
+
+    public Booking(String codeBooking, LocalDate startDateBooking, LocalDate endDateBooking, String codeCustomer, String nameService) {
+        this.codeBooking = codeBooking;
+        this.startDateBooking = startDateBooking;
+        this.endDateBooking = endDateBooking;
+        this.codeCustomer = codeCustomer;
+        this.nameService = nameService;
+    }
 
     public String getCodeBooking() {
         return codeBooking;
@@ -51,12 +59,20 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking{" +
-                "codeBooking='" + codeBooking + '\'' +
-                ", startDateBooking=" + startDateBooking +
-                ", endDateBooking=" + endDateBooking +
-                ", codeCustomer='" + codeCustomer + '\'' +
-                ", nameService='" + nameService + '\'' +
-                '}';
+        return
+                codeBooking +
+                ", " + startDateBooking +
+                ", " + endDateBooking +
+                ", " + codeCustomer+
+                ", " + nameService;
+    }
+
+
+    @Override
+    public int compareTo(Booking o) {
+        if (this.getStartDateBooking().compareTo(o.getStartDateBooking()) == 0) {
+            return this.getEndDateBooking().compareTo(o.getEndDateBooking());
+        }
+        return this.getStartDateBooking().compareTo(o.getStartDateBooking());
     }
 }

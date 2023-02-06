@@ -34,7 +34,10 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public void displayList() {
         try {
-            dataCustomersUtil.readDataFromCustomerFile();
+            List<Customer> customerList = dataCustomersUtil.readDataFromCustomerFile();
+            for (Customer customer: customerList) {
+                System.out.println(customer);
+            }
         } catch (IOException e) {
         }
     }
