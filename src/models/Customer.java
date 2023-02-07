@@ -1,8 +1,9 @@
 package models;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class Customer extends Person {
+public class Customer extends Person implements Comparable<Customer> {
     private String codeCustomer;
     private String customerType;
     private String address;
@@ -42,8 +43,13 @@ public class Customer extends Person {
     public String toString() {
         return
                 super.toString() +
-                ", " + codeCustomer +
-                ", " + customerType +
-                ", " + address;
+                        ", " + codeCustomer +
+                        ", " + customerType +
+                        ", " + address;
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        return LocalDate.parse(this.getDateOfBirth(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).compareTo(LocalDate.parse(o.getDateOfBirth(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 }

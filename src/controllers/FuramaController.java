@@ -3,10 +3,7 @@ package controllers;
 import models.Employee;
 import models.Facility;
 import models.Villa;
-import services.BookingServiceImpl;
-import services.CustomerServiceImpl;
-import services.EmployeeServiceImpl;
-import services.FacilityServiceImpl;
+import services.*;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -21,6 +18,7 @@ public class FuramaController {
     CustomerServiceImpl customerService = new CustomerServiceImpl();
     FacilityServiceImpl facilityService = new FacilityServiceImpl();
     BookingServiceImpl bookingService = new BookingServiceImpl();
+    PromotionServiceImpl promotionService = new PromotionServiceImpl();
 
     public void subMenu(int chooseUser) {
         switch (chooseUser) {
@@ -166,9 +164,24 @@ public class FuramaController {
                 } while (chooseUserFromCase4 > 0 && chooseUserFromCase4 < 3);
                 break;
             case 5:
-                System.out.println("1. Display list customers use service");
-                System.out.println("2. Display list customers get voucher");
-                System.out.println("3. Return main menu");
+                int chooseUserFromCase5 = 0;
+                do {
+                    System.out.println("1. Display list customers use service");
+                    System.out.println("2. Display list customers get voucher");
+                    System.out.println("3. Return main menu");
+                    chooseUserFromCase5 = Integer.parseInt(sc.nextLine());
+                    switch (chooseUserFromCase5) {
+                        case 1:
+                            promotionService.displayCustomerListUsedService();
+                            break;
+                        case 2:
+                            promotionService.displayCustomerReceiveVoucher();
+                            break;
+                        case 3:
+                            displayMainMenu();
+                            break;
+                    }
+                } while (chooseUserFromCase5 > 0 && chooseUserFromCase5 < 3);
                 break;
         }
     }

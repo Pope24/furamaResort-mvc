@@ -338,5 +338,29 @@ public class MenuModifier {
         }
         return codeService;
     }
-
+    public Stack<Integer> getAmountVoucher(int amountCustomers) {
+        Stack<Integer> amountVoucher = new Stack<>();
+        System.out.println("Moi ban nhap so luong voucher ( tong = " + amountCustomers + " )" );
+        int voucher10Percent;
+        int voucher20Percent;
+        int voucher50Percent;
+        do {
+            System.out.println("Nhap so luong voucher 10%: ");
+            voucher10Percent = sc.nextInt();
+            System.out.println("Nhap so luong voucher 20%:");
+            voucher20Percent = sc.nextInt();
+            System.out.println("Nhap so luong voucher 50%:");
+            voucher50Percent = sc.nextInt();
+        } while ((voucher10Percent + voucher20Percent + voucher50Percent) != amountCustomers);
+        for (int i = 1; i <= voucher50Percent; i++) {
+            amountVoucher.push(50);
+        }
+        for (int i = 1; i <= voucher20Percent; i++) {
+            amountVoucher.push(20);
+        }
+        for (int i = 1; i <= voucher10Percent; i++) {
+            amountVoucher.push(10);
+        }
+        return amountVoucher;
+    }
 }

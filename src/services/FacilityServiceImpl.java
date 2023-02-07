@@ -16,12 +16,12 @@ public class FacilityServiceImpl implements IFacilityService {
     static MenuModifier menuModifier = new MenuModifier();
 
     static {
-        serviceVillaUsed.put(new Villa("SVVL-0001", "C1122G1", 100, 9000000, 12, "Thue theo thang", 5, 50, 4), 0);
-        serviceVillaUsed.put(new Villa("SVVL-0003", "C0123L1", 65, 6500000, 15, "Thue theo ngay", 2, 60, 2), 5);
-        serviceVillaUsed.put(new Villa("SVVL-0005", "A0722I1", 30, 3000000, 18, "Thue theo ngay", 4, 35, 8), 5);
-        serviceRoomUsed.put(new Room("SVRO-0001", "C0822G1", 48, 4500000, 18, "Thue theo thang", "Nuoc uong mien phi"), 0);
-        serviceRoomUsed.put(new Room("SVRO-0003", "C1022G1", 50, 4700000, 20, "Thue theo ngay", "Xong hoi mien phi"), 5);
-        serviceRoomUsed.put(new Room("SVRO-0005", "C0622G1", 65, 6500000, 16, "Thue theo ngay", "Phuc vu com mien phi"), 0);
+        serviceVillaUsed.put(new Villa("SVVL-0001", "C1122G1", 100, 9000000, 12, "Thue theo ngay", 5, 50, 4), 0);
+        serviceVillaUsed.put(new Villa("SVVL-0003", "C0123L1", 65, 6500000, 15, "Thue theo thang", 2, 60, 2), 5);
+        serviceVillaUsed.put(new Villa("SVVL-0005", "A0722I1", 30, 3000000, 18, "Thue theo nam", 4, 35, 8), 5);
+        serviceRoomUsed.put(new Room("SVRO-0001", "C0822G1", 48, 4500000, 18, "Thue theo ngay", "Nuoc uong mien phi"), 0);
+        serviceRoomUsed.put(new Room("SVRO-0003", "C1022G1", 50, 4700000, 20, "Thue theo thang", "Xong hoi mien phi"), 5);
+        serviceRoomUsed.put(new Room("SVRO-0005", "C0622G1", 65, 6500000, 16, "Thue theo nam", "Phuc vu com mien phi"), 0);
         try {
             dataFacilityUtil.writeDataVillaToFile(serviceVillaUsed);
             dataFacilityUtil.writeDataRoomToFile(serviceRoomUsed);
