@@ -1,5 +1,6 @@
 package utils;
 
+import models.Booking;
 import models.Customer;
 import models.Room;
 import models.Villa;
@@ -12,6 +13,7 @@ public class MenuModifier {
     static Scanner sc = new Scanner(System.in);
     RegexAddFacility regexAddFacility = new RegexAddFacility();
     DataFacilityUtil dataFacilityUtil = new DataFacilityUtil();
+    DataBookingUtil dataBookingUtil = new DataBookingUtil();
 
     public String getCustomerType() {
         int chooseType = 0;
@@ -362,5 +364,41 @@ public class MenuModifier {
             amountVoucher.push(10);
         }
         return amountVoucher;
+    }
+    public Map<Room, Integer> updateTimeUsedOfRoomService() {
+        TreeSet<Booking> bookingTreeSet = dataBookingUtil.readDataBookingFromFile();
+        Map<Room, Integer> dataRoomFacility = null;
+        try {
+            dataRoomFacility = dataFacilityUtil.readDataRoomFromFile();
+            for (Map.Entry<Room, Integer> entry: dataRoomFacility.entrySet()) {
+                for (Booking booking: bookingTreeSet) {
+                    if (entry.getKey().getCodeService().equals(booking.getNameService())) {
+                        dataRoomFacility.put(entry.getKey(), entry.getValue() + 1);
+                    }
+                }
+            }
+            return dataRoomFacility;
+        } catch (IOException e) {
+            System.err.println("Can not get data from database !! Try again ...");
+        }
+        return dataRoomFacility;
+    }
+    public Map<Villa, Integer> updateTimeUsedOfVillaService() {
+        TreeSet<Booking> bookingTreeSet = dataBookingUtil.readDataBookingFromFile();
+        Map<Villa, Integer> dataVillaFacility = null;
+        try {
+            dataVillaFacility = dataFacilityUtil.readDataVillaFromFile();
+            for (Map.Entry<Villa, Integer> entry: dataVillaFacility.entrySet()) {
+                for (Booking booking: bookingTreeSet) {
+                    if (entry.getKey().getCodeService().equals(booking.getNameService())) {
+                        dataVillaFacility.put(entry.getKey(), entry.getValue() + 1);
+                    }
+                }
+            }
+            return dataVillaFacility;
+        } catch (IOException e) {
+            System.err.println("Can not get data from database !! Try again ...");
+        }
+        return dataVillaFacility;
     }
 }

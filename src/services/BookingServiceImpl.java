@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class BookingServiceImpl implements IBookingService {
@@ -36,22 +37,27 @@ public class BookingServiceImpl implements IBookingService {
 
     @Override
     public boolean add() {
-        System.out.println("Nhap ma booking: ");
-        String codeBooking = sc.nextLine();
-        System.out.println("Nhap ngay bat dau theo format(dd/mm/yyyy): ");
-        String startDateString = sc.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate startDate = LocalDate.parse(startDateString, formatter);
-        System.out.println("Nhap ngay ket thuc theo format(dd/mm/yyyy): ");
-        String endDateString = sc.nextLine();
-        LocalDate endDate = LocalDate.parse(endDateString, formatter);
-        System.out.println("Ma khach hang: ");
-        String codeCustomer = menuModifier.getCodeCustomer();
-        System.out.println("Ten dich vu: ");
-        String nameService = menuModifier.getCodeService();
-        bookingTreeSet.add(new Booking(codeBooking, startDate, endDate, codeCustomer, nameService));
-        dataBookingUtil.writeDataBookingToFile(bookingTreeSet);
-        System.out.println("Completed !!");
+        try {
+            System.out.println("Nhap ma booking: ");
+            String codeBooking = sc.nextLine();
+            System.out.println("Nhap ngay bat dau theo format(dd/mm/yyyy): ");
+            String startDateString = sc.nextLine();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate startDate = LocalDate.parse(startDateString, formatter);
+            System.out.println("Nhap ngay ket thuc theo format(dd/mm/yyyy): ");
+            String endDateString = sc.nextLine();
+            LocalDate endDate = LocalDate.parse(endDateString, formatter);
+            System.out.println("Ma khach hang: ");
+            String codeCustomer = menuModifier.getCodeCustomer();
+            System.out.println("Ten dich vu: ");
+            String nameService = menuModifier.getCodeService();
+            bookingTreeSet.add(new Booking(codeBooking, startDate, endDate, codeCustomer, nameService));
+            dataBookingUtil.writeDataBookingToFile(bookingTreeSet);
+            System.out.println("Completed !!");
+        } catch (DateTimeParseException e) {
+            System.out.println("Ban nhap sai dinh dang !! Moi ban nhap lai ...");
+            return add();
+        }
         return true;
     }
 }

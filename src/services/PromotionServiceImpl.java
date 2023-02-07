@@ -12,9 +12,10 @@ import java.util.TreeSet;
 public class PromotionServiceImpl {
     static DataPromotionUtil promotionService = new DataPromotionUtil();
     static MenuModifier menuModifier = new MenuModifier();
+    static TreeSet<Customer> customerListUsedService = null;
 
     public void displayCustomerListUsedService() {
-        TreeSet<Customer> customerListUsedService = promotionService.getCustomerListUsedService();
+        customerListUsedService = promotionService.getCustomerListUsedService();
         for (Customer customer : customerListUsedService) {
             System.out.println(customer);
         }
