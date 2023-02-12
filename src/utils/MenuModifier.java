@@ -453,7 +453,7 @@ public class MenuModifier {
         try {
             regexAddFacility.checkDateOfBirthUser(dateOfBirth);
         } catch (UserException e) {
-            checkDateOfBirth();
+            return checkDateOfBirth();
         }
         return dateOfBirth;
     }

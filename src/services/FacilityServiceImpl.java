@@ -54,10 +54,12 @@ public class FacilityServiceImpl implements IFacilityService {
                 case 1:
                     serviceVillaUsed.put(menuModifier.getInfoVillaService(), 0);
                     dataFacilityUtil.writeDataVillaToFile(serviceVillaUsed);
+                    dataFacilityUtil.writeDataVillaToFile(menuModifier.updateTimeUsedOfVillaService());
                     break;
                 case 2:
                     serviceRoomUsed.put(menuModifier.getInfoRoomService(), 0);
                     dataFacilityUtil.writeDataRoomToFile(serviceRoomUsed);
+                    dataFacilityUtil.writeDataRoomToFile(menuModifier.updateTimeUsedOfRoomService());
                     break;
                 case 3:
                     break;
@@ -77,13 +79,13 @@ public class FacilityServiceImpl implements IFacilityService {
         return true;
     }
 
-    public void displayListFacilityMaintenance() {
-        for (Map.Entry<Room, Integer> entry : menuModifier.updateTimeUsedOfRoomService().entrySet()) {
+    public void displayListFacilityMaintenance() throws IOException {
+        for (Map.Entry<Room, Integer> entry : dataFacilityUtil.readDataRoomFromFile().entrySet()) {
             if (entry.getValue() >= 5) {
                 System.out.println("Room: " + entry.getKey().getNameService());
             }
         }
-        for (Map.Entry<Villa, Integer> entry : menuModifier.updateTimeUsedOfVillaService().entrySet()) {
+        for (Map.Entry<Villa, Integer> entry : dataFacilityUtil.readDataVillaFromFile().entrySet()) {
             if (entry.getValue() >= 5) {
                 System.out.println("Villa: " + entry.getKey().getNameService());
             }
