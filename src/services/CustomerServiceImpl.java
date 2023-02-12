@@ -1,6 +1,7 @@
 package services;
 
 import models.Customer;
+import models.Employee;
 import utils.*;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class CustomerServiceImpl implements ICustomerService {
     public void displayList() {
         try {
             List<Customer> customerList = dataCustomersUtil.readDataFromCustomerFile();
-            for (Customer customer: customerList) {
+            for (Customer customer : customerList) {
                 System.out.println(customer);
             }
         } catch (IOException e) {
@@ -59,8 +60,7 @@ public class CustomerServiceImpl implements ICustomerService {
         String codeCustomerEdit = sc.nextLine();
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getCodeCustomer().equals(codeCustomerEdit)) {
-                Customer customerEdited = getInfoCustomer();
-                customerList.set(i, customerEdited);
+                chooseAndEditAttributeCustomer(customerList.get(i));
                 try {
                     dataCustomersUtil.writeDataToCustomerFile(customerList);
                 } catch (IOException e) {
@@ -91,5 +91,73 @@ public class CustomerServiceImpl implements ICustomerService {
         System.out.println("Nhap dia chi khach hang: ");
         String address = sc.nextLine();
         return new Customer(name, dateOfBirth, gender, citizenIdentification, phoneNumber, email, codeCustomer, customerType, address);
+    }
+
+    public void chooseAndEditAttributeCustomer(Customer customer) {
+        System.out.println("Lua chon muc can sua:");
+        System.out.println("1. Ten khach hang");
+        System.out.println("2. Ngay sinh");
+        System.out.println("3. Gioi tinh:");
+        System.out.println("4. CCCD ");
+        System.out.println("5. So dien thoai");
+        System.out.println("6. Email");
+        System.out.println("7. NewCode cua khach hang ");
+        System.out.println("8. Loai khach hang ");
+        System.out.println("9. Dia chi khach hang ");
+        try {
+            int chooseUser = Integer.parseInt(sc.nextLine());
+            switch (chooseUser) {
+                case 1:
+                    System.out.println("Nhap ten moi cua khach hang:");
+                    String name = sc.nextLine();
+                    customer.setName(name);
+                    break;
+                case 2:
+                    String dateOfBirth = menuModifier.checkDateOfBirth();
+                    customer.setDateOfBirth(dateOfBirth);
+                    break;
+                case 3:
+                    System.out.println("Nhap gioi tinh:");
+                    String gender = sc.nextLine();
+                    customer.setGender(gender);
+                    break;
+                case 4:
+                    System.out.println("Nhap CCCD: ");
+                    String citizenIdentification = sc.nextLine();
+                    customer.setCitizenIdentification(citizenIdentification);
+                    break;
+                case 5:
+                    System.out.println("Nhap so dien thoai: ");
+                    String phoneNumber = sc.nextLine();
+                    customer.setPhoneNumber(phoneNumber);
+                    break;
+                case 6:
+                    System.out.println("Nhap email moi:");
+                    String email = sc.nextLine();
+                    customer.setEmail(email);
+                    break;
+                case 7:
+                    System.out.println("Nhap newCode cua khach hang: ");
+                    String code = sc.nextLine();
+                    customer.setCodeCustomer(code);
+                case 8:
+                    System.out.println("Nhap loai khach hang: ");
+                    String customerType = menuModifier.getCustomerType();
+                    customer.setCustomerType(customerType);
+                    break;
+                case 9:
+                    System.out.println("Nhap dia chi khach hang: ");
+                    String address = sc.nextLine();
+                    customer.setAddress(address);
+                    break;
+                default:
+                    System.out.println("Khong co muc nay !! Moi nhap lai ...");
+                    chooseAndEditAttributeCustomer(customer);
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Ban da nhap sai format !! Moi nhap lai ...");
+            chooseAndEditAttributeCustomer(customer);
+        }
     }
 }

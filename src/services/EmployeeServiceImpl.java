@@ -80,8 +80,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         String codeEmployeeEdit = sc.nextLine();
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getCodeEmployee().equals(codeEmployeeEdit)) {
-                Employee newEmployee = getInfoEmployee();
-                employeeList.set(i, newEmployee);
+                chooseAndEditAttributeEmployee(employeeList.get(i));
                 try {
                     dataEmployeeUtil.writeDataEmployeeToFile(employeeList);
                 } catch (IOException e) {
@@ -113,5 +112,78 @@ public class EmployeeServiceImpl implements IEmployeeService {
         System.out.println("Nhap luong khoi diem: ");
         String salary = sc.nextLine();
         return new Employee(name, dateOfBirth, gender, citizenIdentification, phoneNumber, email, code, academicLevel, position, salary);
+    }
+    public void chooseAndEditAttributeEmployee(Employee employee) {
+        System.out.println("Lua chon muc can sua:");
+        System.out.println("1. Ten nhan vien");
+        System.out.println("2. Ngay sinh");
+        System.out.println("3. Gioi tinh:");
+        System.out.println("4. CCCD ");
+        System.out.println("5. So dien thoai");
+        System.out.println("6. Email");
+        System.out.println("7. NewCode cua nhan vien ");
+        System.out.println("8. Trinh do hoc van ");
+        System.out.println("9. Vi tri trong cong ty ");
+        System.out.println("10. luong khoi diem ");
+        try {
+            int chooseUser = Integer.parseInt(sc.nextLine());
+            switch (chooseUser) {
+                case 1:
+                    System.out.println("Nhap ten moi:");
+                    String name = sc.nextLine();
+                    employee.setName(name);
+                    break;
+                case 2:
+                    String dateOfBirth = menuModifier.checkDateOfBirth();
+                    employee.setDateOfBirth(dateOfBirth);
+                    break;
+                case 3:
+                    System.out.println("Nhap gioi tinh:");
+                    String gender = sc.nextLine();
+                    employee.setGender(gender);
+                    break;
+                case 4:
+                    System.out.println("Nhap CCCD: ");
+                    String citizenIdentification = sc.nextLine();
+                    employee.setCitizenIdentification(citizenIdentification);
+                    break;
+                case 5:
+                    System.out.println("Nhap so dien thoai: ");
+                    String phoneNumber = sc.nextLine();
+                    employee.setPhoneNumber(phoneNumber);
+                    break;
+                case 6:
+                    System.out.println("Nhap email moi:");
+                    String email = sc.nextLine();
+                    employee.setEmail(email);
+                    break;
+                case 7:
+                    System.out.println("Nhap newCode cua nhan vien: ");
+                    String code = sc.nextLine();
+                    employee.setCodeEmployee(code);
+                case 8:
+                    System.out.println("Nhap trinh do hoc van: ");
+                    String academicLevel = menuModifier.getAcademicLevelOfEmployee();
+                    employee.setAcademicLevel(academicLevel);
+                    break;
+                case 9:
+                    System.out.println("Nhap vi tri trong cong ty: ");
+                    String position = menuModifier.getEmployeePosition();
+                    employee.setPosition(position);
+                    break;
+                case 10:
+                    System.out.println("Nhap luong khoi diem: ");
+                    String salary = sc.nextLine();
+                    employee.setSalary(salary);
+                    break;
+                default:
+                    System.out.println("Khong co muc nay !! Moi nhap lai ...");
+                    chooseAndEditAttributeEmployee(employee);
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Ban da nhap sai format !! Moi nhap lai ...");
+            chooseAndEditAttributeEmployee(employee);
+        }
     }
 }
