@@ -1,8 +1,7 @@
 package services;
 
 import models.Customer;
-import utils.DataCustomersUtil;
-import utils.MenuModifier;
+import utils.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -14,7 +13,9 @@ import java.util.Scanner;
 public class CustomerServiceImpl implements ICustomerService {
     static List<Customer> customerList = new LinkedList<>();
     static DataCustomersUtil dataCustomersUtil = new DataCustomersUtil();
+    static DataFacilityUtil dataFacilityUtil = new DataFacilityUtil();
     static MenuModifier menuModifier = new MenuModifier();
+    static RegexAddFacility regex = new RegexAddFacility();
 
     static {
         customerList.add(new Customer("Tran Van Y", "23/01/1998", "Nam", "9384757929", "0927463782", "vany@gmail.com", "92C3", "Silver", "Quang Nam"));
@@ -74,8 +75,7 @@ public class CustomerServiceImpl implements ICustomerService {
     public Customer getInfoCustomer() {
         System.out.println("Nhap ten khach hang moi: ");
         String name = sc.nextLine();
-        System.out.println("Nhap ngay sinh them format (dd/mm/yy): ");
-        String dateOfBirth = sc.nextLine();
+        String dateOfBirth = menuModifier.checkDateOfBirth();
         System.out.println("Nhap gioi tinh:");
         String gender = sc.nextLine();
         System.out.println("Nhap CCCD: ");

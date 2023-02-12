@@ -340,9 +340,10 @@ public class MenuModifier {
         }
         return codeService;
     }
+
     public Stack<Integer> getAmountVoucher(int amountCustomers) {
         Stack<Integer> amountVoucher = new Stack<>();
-        System.out.println("Moi ban nhap so luong voucher ( tong = " + amountCustomers + " )" );
+        System.out.println("Moi ban nhap so luong voucher ( tong = " + amountCustomers + " )");
         int voucher10Percent;
         int voucher20Percent;
         int voucher50Percent;
@@ -365,17 +366,20 @@ public class MenuModifier {
         }
         return amountVoucher;
     }
+
     public Map<Room, Integer> updateTimeUsedOfRoomService() {
         TreeSet<Booking> bookingTreeSet = dataBookingUtil.readDataBookingFromFile();
         Map<Room, Integer> dataRoomFacility = null;
         try {
             dataRoomFacility = dataFacilityUtil.readDataRoomFromFile();
-            for (Map.Entry<Room, Integer> entry: dataRoomFacility.entrySet()) {
-                for (Booking booking: bookingTreeSet) {
-                    if (entry.getKey().getCodeService().equals(booking.getNameService())) {
-                        dataRoomFacility.put(entry.getKey(), entry.getValue() + 1);
+            for (Map.Entry<Room, Integer> entry : dataRoomFacility.entrySet()) {
+                int count = 0;
+                for (Booking booking : bookingTreeSet) {
+                    if (entry.getKey().getCodeService().equals(booking.getNameService()) && entry.getValue() < 5) {
+                        count++;
                     }
                 }
+                        dataRoomFacility.put(entry.getKey(), count);
             }
             return dataRoomFacility;
         } catch (IOException e) {
@@ -383,16 +387,38 @@ public class MenuModifier {
         }
         return dataRoomFacility;
     }
+    public boolean checkServiceRoomNeedToMaintain(String nameService) {
+        Map<Room, Integer> dataRoomFacility = null;
+        try {
+            dataRoomFacility = dataFacilityUtil.readDataRoomFromFile();
+            for (Map.Entry<Room, Integer> entry : dataRoomFacility.entrySet()) {
+                    if (entry.getKey().getCodeService().equals(nameService) && entry.getValue() < 5) {
+                        return true;
+                    }
+                    else if (entry.getKey().getCodeService().equals(nameService) && entry.getValue()>= 5){
+                        System.out.println("Dich vu dang can duoc bao tri !!");
+                        return false;
+                    }
+            }
+            return true;
+        } catch (IOException e) {
+            System.err.println("Can not get data from database !! Try again ...");
+        }
+        return true;
+    }
+
     public Map<Villa, Integer> updateTimeUsedOfVillaService() {
         TreeSet<Booking> bookingTreeSet = dataBookingUtil.readDataBookingFromFile();
         Map<Villa, Integer> dataVillaFacility = null;
         try {
             dataVillaFacility = dataFacilityUtil.readDataVillaFromFile();
-            for (Map.Entry<Villa, Integer> entry: dataVillaFacility.entrySet()) {
-                for (Booking booking: bookingTreeSet) {
-                    if (entry.getKey().getCodeService().equals(booking.getNameService())) {
-                        dataVillaFacility.put(entry.getKey(), entry.getValue() + 1);
+            for (Map.Entry<Villa, Integer> entry : dataVillaFacility.entrySet()) {
+                int count = 0;
+                for (Booking booking : bookingTreeSet) {
+                    if (entry.getKey().getCodeService().equals(booking.getNameService()) && entry.getValue() < 5) {
+                        count++;
                     }
+                        dataVillaFacility.put(entry.getKey(), count);
                 }
             }
             return dataVillaFacility;
@@ -400,5 +426,35 @@ public class MenuModifier {
             System.err.println("Can not get data from database !! Try again ...");
         }
         return dataVillaFacility;
+    }
+    public boolean checkServiceVillaNeedToMaintain(String nameService) {
+        Map<Villa, Integer> dataVillaFacility = null;
+        try {
+            dataVillaFacility = dataFacilityUtil.readDataVillaFromFile();
+            for (Map.Entry<Villa, Integer> entry : dataVillaFacility.entrySet()) {
+                if (entry.getKey().getCodeService().equals(nameService) && entry.getValue() < 5) {
+                    return true;
+                }
+                else if (entry.getKey().getCodeService().equals(nameService) && entry.getValue()>= 5){
+                    System.out.println("Dich vu dang can duoc bao tri !!");
+                    return false;
+                }
+            }
+            return true;
+        } catch (IOException e) {
+            System.err.println("Can not get data from database !! Try again ...");
+        }
+        return true;
+    }
+    public String checkDateOfBirth() {
+        String dateOfBirth;
+        System.out.println("Nhap ngay sinh them format (dd/mm/yy): ");
+        dateOfBirth = sc.nextLine();
+        try {
+            regexAddFacility.checkDateOfBirthUser(dateOfBirth);
+        } catch (UserException e) {
+            checkDateOfBirth();
+        }
+        return dateOfBirth;
     }
 }

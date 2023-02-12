@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeServiceImpl implements IEmployeeService {
-    Scanner sc = new Scanner(System.in);
     static List<Employee> employeeList = new ArrayList<>();
     static DataEmployeeUtil dataEmployeeUtil = new DataEmployeeUtil();
     static MenuModifier menuModifier = new MenuModifier();
@@ -30,6 +29,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
         } catch (IOException e) {
         }
     }
+
+    Scanner sc = new Scanner(System.in);
 
     @Override
     public void displayList() {
@@ -52,6 +53,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
         return false;
     }
+
     public boolean delete() throws ClassNotFoundException {
         System.out.println("Nhap ma code cua nhan vien can xoa: ");
         boolean flag = false;
@@ -72,6 +74,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
         return flag;
     }
+
     public boolean edit() {
         System.out.println("Nhap ma code cua nhan vien can sua: ");
         String codeEmployeeEdit = sc.nextLine();
@@ -88,11 +91,11 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
         return false;
     }
+
     public Employee getInfoEmployee() {
         System.out.println("Nhap ten nhan vien moi: ");
         String name = sc.nextLine();
-        System.out.println("Nhap ngay sinh them format (dd/mm/yy): ");
-        String dateOfBirth = sc.nextLine();
+        String dateOfBirth = menuModifier.checkDateOfBirth();
         System.out.println("Nhap gioi tinh:");
         String gender = sc.nextLine();
         System.out.println("Nhap CCCD: ");
