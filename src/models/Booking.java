@@ -2,7 +2,7 @@ package models;
 
 import java.time.LocalDate;
 
-public class Booking implements Comparable<Booking>{
+public class Booking implements Comparable<Booking> {
     private String codeBooking;
     private LocalDate startDateBooking;
     private LocalDate endDateBooking;
@@ -61,10 +61,10 @@ public class Booking implements Comparable<Booking>{
     public String toString() {
         return
                 codeBooking +
-                ", " + startDateBooking +
-                ", " + endDateBooking +
-                ", " + codeCustomer+
-                ", " + nameService;
+                        ", " + startDateBooking +
+                        ", " + endDateBooking +
+                        ", " + codeCustomer +
+                        ", " + nameService;
     }
 
 
